@@ -1,0 +1,17 @@
+//
+//  SafeGuardApp.swift
+//  SafeGuard
+//
+//  Created by C A.V on 2/3/24.
+//
+
+import SwiftUI
+
+@main
+struct SafeGuardApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
