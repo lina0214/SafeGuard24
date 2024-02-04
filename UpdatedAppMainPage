@@ -1,3 +1,9 @@
+//
+//  MainView.swift
+//  SafeGuard
+//
+//  Created by C A.V on 2/3/24.
+//
 import SwiftUI
 import MapKit
 
@@ -19,23 +25,29 @@ struct MainView: View {
                 .edgesIgnoringSafeArea(.all)
 
             VStack {
-                TextField("Search", text: $searchText, onCommit: performSearch)
+                TextField("Search", text: $searchText)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(10)
                     .padding(.horizontal)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .onChange(of: searchText, perform: { _ in
+                        updateSearchResults()
+                    })
 
-                List(searchResults, id: \.self) { result in
-                    Button(action: {
-                        selectLocation(result)
-                    }) {
-                        Text(result.name ?? "Unknown")
-                            .padding(.vertical, 5)
-                            .padding(.horizontal)
+                // List of search results
+                if !searchResults.isEmpty {
+                    List(searchResults, id: \.self) { result in
+                        Button(action: {
+                            selectLocation(result)
+                        }) {
+                            Text(result.name ?? "Unknown")
+                                .padding(.vertical, 5)
+                                .padding(.horizontal)
+                        }
                     }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
 
                 // Map View
                 MapView(coordinate: mapCoordinate)
@@ -48,6 +60,16 @@ struct MainView: View {
         }
     }
 
+    private func updateSearchResults() {
+        if searchText.isEmpty {
+            // Clear the search results when the text is empty
+            searchResults = []
+        } else {
+            // Perform the search
+            performSearch()
+        }
+    }
+
     private func performSearch() {
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = searchText
@@ -56,6 +78,9 @@ struct MainView: View {
         search.start { response, error in
             if let items = response?.mapItems {
                 searchResults = items
+                if let firstResult = items.first {
+                    selectLocation(firstResult)
+                }
             }
         }
     }
