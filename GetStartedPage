@@ -4,76 +4,61 @@
 //
 //  Created by C A.V on 2/3/24.
 //
-
 import SwiftUI
 
 struct ContentView: View {
     @State private var showInstructions = false
 
     var body: some View {
-        NavigationView {
-            ZStack {
-                // Background with a light purple color
-                Color(red: 200/255, green: 190/255, blue: 220/255)
-                    .edgesIgnoringSafeArea(.all) // Ignore safe area to fill the entire screen
-                
-                // Content stack overlaying the background
-                VStack {
-                    Spacer() // Move content to the bottom
-                    
-                    Image("LittleLogo")
-                        .resizable()
-                        .frame(width: 350, height: 300)
-                    
-                    Text("SAFEGUARD")
-                        .font(.system(size: 51)) // Adjust the font size to make it bigger
-                        .bold()
-                        .foregroundColor(.white)
-                    
-                    Text("Protecting Women of Color")
-                        .font(.system(size: 25.5))
-                    Spacer()
-                    // Sign In Button
-                    NavigationLink(
-                        destination: InstructionsView(),
-                        isActive: $showInstructions
-                    ) {
-                        EmptyView()
-                    }
-                    .hidden()
-                    
-                    Button(action: {
-                        showInstructions.toggle()
-                    }) {
-                        Text("GET STARTED")
-                            .bold()
-                            .foregroundColor(.black)
-                            .padding()
-                            .frame(width: 300)
-                            .background(Color.white)
-                            .cornerRadius(10)
-                    }
-                    
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Image("LogoSlay")
-                        .resizable()
-                        .frame(width: 32, height: 30)
-                }
-                .padding()
-                .fullScreenCover(isPresented: $showInstructions) {
-                    InstructionsView()
-                }
-            }
-            .navigationBarHidden(true) // Hide the navigation bar
-        }
-    }
-}
+        ZStack {
+            Color(red: 200/255, green: 190/255, blue: 220/255)
+                .edgesIgnoringSafeArea(.all)
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+            VStack {
+                Spacer()
+
+                Image("LittleLogo")
+                    .resizable()
+                    .frame(width: 350, height: 300)
+
+                Text("SAFEGUARD")
+                    .font(.system(size: 51))
+                    .bold()
+                    .foregroundColor(.white)
+
+                Text("Protecting Women of Color")
+                    .font(.system(size: 25.5))
+
+                Spacer()
+
+                Button(action: {
+                    showInstructions.toggle()
+                }) {
+                    Text("GET STARTED")
+                        .bold()
+                        .foregroundColor(.black)
+                        .padding()
+                        .frame(width: 300)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                }
+                .fullScreenCover(isPresented: $showInstructions) {
+                    NavigationView {
+                        InstructionsView()
+                    }
+                }
+                
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+
+                Image("LogoSlay")
+                    .resizable()
+                    .frame(width: 32, height: 30)
+            }
+            .padding()
+        }
+        .navigationBarHidden(true)
     }
 }
