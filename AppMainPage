@@ -1,0 +1,56 @@
+//
+//  MainView.swift
+//  SafeGuard
+//
+//  Created by C A.V on 2/3/24.
+//
+
+import SwiftUI
+
+struct MainView: View {
+    var body: some View {
+        ZStack {
+            // Background with a light purple color
+            Color(.white)
+                .edgesIgnoringSafeArea(.all) // Ignore safe area to fill the entire screen
+            
+            // Content stack overlaying the background
+            VStack {
+                Text("Welcome Jane!")
+                    .font(.system(size: 25)) // Adjust the font size to make it bigger
+                    .bold()
+                    .foregroundColor(.black)
+                
+                Text("Protecting Women of Color")
+                    .font(.system(size: 25.5))
+                
+                // Sign In Button
+                Button(action: {
+                    // Add your Sign In logic here
+                }) {
+                    Text("GET STARTED")
+                        .bold()
+                        .foregroundColor(.black)
+                        .padding()
+                        .frame(width: 300)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                }
+                
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                
+                
+            }
+            .padding()
+        }
+    }
+}
+
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
+    }
+}
