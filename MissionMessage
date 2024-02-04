@@ -10,74 +10,63 @@ struct InstructionsView: View {
     @State private var showInstructionsPartTwo = false
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                // Background with a light purple color
-                Color(red: 200/255, green: 190/255, blue: 220/255)
-                    .edgesIgnoringSafeArea(.all) // Ignore safe area to fill the entire screen
-                
-                // Content stack overlaying the background
-                VStack {
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Text("Welcome to")
-                        .font(.system(size: 25.5))
-                        .foregroundColor(.white)
-                    
-                    Text("SAFEGUARD")
-                        .font(.system(size: 51))
-                        .bold()
-                        .foregroundColor(.white)
-                    
-                    // Sign In Button
-                    Text("Our mission is simple: to provide a platform where women and gender minorities can access valuable insights about safety in their area")
-                        .bold()
-                        .foregroundColor(.black)
-                        .padding()
-                        .frame(width: 300, height: 150)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                    Spacer()
-                    // Tell Me More Button
-                    Button(action: {
-                        showInstructionsPartTwo.toggle()
-                    }) {
-                        Text("tell me more")
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(width: 200, height: 40)
-                            .background(Color.black)
-                            .cornerRadius(10)
-                    }
-                    .padding(.top, 10)
-                    
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    
-                    // Image at the bottom center
-                    Image("LogoSlay")
-                        .resizable()
-                        .frame(width: 32, height: 30)
-                        .padding()
+        ZStack {
+            Color(red: 200/255, green: 190/255, blue: 220/255)
+                .edgesIgnoringSafeArea(.all)
+
+            VStack {
+                Spacer()
+                Spacer()
+                Spacer()
+
+                Text("Welcome to")
+                    .font(.system(size: 25.5))
+                    .foregroundColor(.white)
+
+                Text("SAFEGUARD")
+                    .font(.system(size: 51))
+                    .bold()
+                    .foregroundColor(.white)
+
+                Text("Our mission is simple: to provide a platform where women and gender minorities can access valuable insights about safety in their area")
+                    .bold()
+                    .foregroundColor(.black)
+                    .padding()
+                    .frame(width: 300, height: 150)
+                    .background(Color.white)
+                    .cornerRadius(10)
+
+                Spacer()
+
+                NavigationLink(destination: InstructionsPartTwoView(), isActive: $showInstructionsPartTwo) {
+                    EmptyView()
                 }
-                .navigationBarHidden(true)
-                .background(
-                    NavigationLink(destination: InstructionsPartTwoView(), isActive: $showInstructionsPartTwo) {
-                        EmptyView()
-                    }
-                    .hidden()
-                )
+                .hidden()
+
+                Button(action: {
+                    showInstructionsPartTwo.toggle()
+                }) {
+                    Text("tell me more")
+                        .bold()
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 200, height: 40)
+                        .background(Color.black)
+                        .cornerRadius(10)
+                }
+                .padding(.top, 10)
+
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+
+                Image("LogoSlay")
+                    .resizable()
+                    .frame(width: 32, height: 30)
+                    .padding()
             }
-        }
-    }
-    
-    struct InstructionsView_Previews: PreviewProvider {
-        static var previews: some View {
-            InstructionsView()
+            .navigationBarHidden(true)
         }
     }
 }
