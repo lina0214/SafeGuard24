@@ -9,63 +9,55 @@ import SwiftUI
 
 struct InstructionsPartTwoView: View {
     @State private var goToMainView = false
-    
-    var body: some View {
-        NavigationView {
-            ZStack {
-                // Background with a light purple color
-                Color(red: 200/255, green: 190/255, blue: 220/255)
-                    .edgesIgnoringSafeArea(.all) // Ignore safe area to fill the entire screen
-                
-                // Content stack overlaying the background
-                VStack {
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Text("Getting Started:\n\n1. Rate Safety\nAfter visiting a location, take a moment to rate your experience as a minority\n\n2. Explore Ratings\nBrowse through reviews from fellow users to explore safety levels in different areas\n\n3. Connect & Support\nChat with other, share experiences, and spread awareness to create safer public spaces\n" )
-                        .bold()
-                        .foregroundColor(.black)
-                        .padding()
-                        .frame(width: 300, height: 425)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                    
-                    NavigationLink(destination: MainView(), isActive: $goToMainView) {
-                        EmptyView()
-                    }
-                    .hidden()
 
-                    Button(action: {
-                        goToMainView.toggle()
-                    }) {
-                        Text("let's go!")
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding()
-                            .frame(width: 200, height: 40)
-                            .background(Color.black)
-                            .cornerRadius(10)
-                    }
-                    .padding(.top, 10)
-                    
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Image("LogoSlay")
-                        .resizable()
-                        .frame(width: 32, height: 30)
+    var body: some View {
+        ZStack {
+            Color(red: 200/255, green: 190/255, blue: 220/255)
+                .edgesIgnoringSafeArea(.all)
+
+            VStack {
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+
+                Text("Getting Started:\n\n1. Rate Safety\nAfter visiting a location, take a moment to rate your experience as a minority\n\n2. Explore Ratings\nBrowse through reviews from fellow users to explore safety levels in different areas\n\n3. Connect & Support\nChat with other, share experiences, and spread awareness to create safer public spaces\n" )
+                    .bold()
+                    .foregroundColor(.black)
+                    .padding()
+                    .frame(width: 300, height: 425)
+                    .background(Color.white)
+                    .cornerRadius(10)
+
+                NavigationLink(destination: MainView(), isActive: $goToMainView) {
+                    EmptyView()
+                }
+                .hidden()
+
+                Button(action: {
+                    goToMainView.toggle()
+                }) {
+                    Text("let's go!")
+                        .bold()
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 200, height: 40)
+                        .background(Color.black)
+                        .cornerRadius(10)
+                }
+                .padding(.top, 10)
+
+                Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+
+                Image("LogoSlay")
+                    .resizable()
+                    .frame(width: 32, height: 30)
                 }
                 .padding()
             }
             .navigationBarHidden(true)
         }
     }
-}
-
-struct InstructionsPartTwoView_Previews: PreviewProvider {
-    static var previews: some View {
-        InstructionsPartTwoView()
-    }
-}
